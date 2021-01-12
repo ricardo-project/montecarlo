@@ -196,6 +196,8 @@
             return Math.floor(1001*Math.random())/1000 //---> O método Math.random() retorna um valor pseudo-aleatório do intervalo [0, 1[. A equação em geral retorna um múltiplo de (1/1000) entre 0 e 1 (ambos includentes)
         } function piso(valor) {
             return Math.floor(valor)
+        } function prox(valor) {
+            return Math.round(valor)
         } const PI = Math.PI
         let numb = document.querySelector("input[type=number]")
         let btnV = document.querySelector("input[value=Verificar]")
@@ -244,8 +246,12 @@
                         ctx.arc(x*900, y*900, tam, 0, 2*PI)
                         ctx.fill()
                     } let PIaprox = 4*count/valor
-                    pPI.textContent = piso(10000000000*PIaprox)/10000000000
-                    pPrc.textContent = "Precisão de " + piso(10000*PIaprox/PI)/100 + " %"
+                    let prctNum = prox(10000*PIaprox/PI)/100
+                    let aproxAdd = ""
+                    if(prctNum !== PIaprox) {
+                        aproxAdd = "aprox. "   
+                    } pPI.textContent = piso(10000000000*PIaprox)/10000000000
+                    pPrc.textContent = "Precisão de " + aproxAdd + piso(10000*PIaprox/PI)/100 + " %"
                     points.textContent = count
                     all.textContent = valor
                     changeDiv(0, btnV, functV, btnBck, functBck)
